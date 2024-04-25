@@ -66,11 +66,9 @@ const images = [
 
 const galleryList = document.querySelector('.gallery');
 
-function createGallery(imgs) {
-  const arrImgs = [];
-  for (const img of imgs) {
-    const { preview, original, description } = img;
-    const item = `<li class="gallery-item">
+const imgGallery = images
+  .map(({ preview, original, description }) => {
+    return `<li class="gallery-item">
     <a class="gallery-link" href="${original}">
       <img
         class="gallery-image"
@@ -80,12 +78,11 @@ function createGallery(imgs) {
       />
     </a>
   </li>`;
-    arrImgs.push(item);
-  }
-  galleryList.innerHTML = arrImgs.join('');
-} // create callery
+  })
+  .join('');
+console.log(imgGallery); //create gallery
 
-createGallery(images); // function call to create gallery
+galleryList.innerHTML = imgGallery;
 
 galleryList.addEventListener('click', openBigImg); // click listener
 
